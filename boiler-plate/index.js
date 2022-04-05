@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://Canadanam:abc1234@boiler-plate.ew2iy.mongodb.net/boiler-plate?retryWrites=true&w=majority";
+const uri = "mongodb+srv://id:pwd@boiler-plate.ew2iy.mongodb.net/boiler-plate?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 client.connect(err => {
