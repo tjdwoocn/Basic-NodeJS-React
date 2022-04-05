@@ -6,7 +6,7 @@ https://ji-gwang.tistory.com/2
 Boiler-plate - 보일러플레이트란?
 컴퓨터 프로그래밍에서 보일러플레이트 또는 보일러플레이트 코드라고 부르는 것은 최소한의 변경으로 여러곳에서 재사용되며, 반복적으로 비슷한 형태를 띄는 코드를 말한다.
 
-## 2. Node JS 와 Express JS 다운로드
+## 2강. Node JS 와 Express JS 다운로드
 
 Node JS: 
 	- Node JS가 나옴으로 인해 항상 브라우저 속에서만 사용하던 js를 브라우저나 크롬, ie가 아닌 서버사이드에서도 사용할수 있게 됨
@@ -51,7 +51,7 @@ Express JS:
 
 ## 3강. Mongo DB 연결
 ### Mongo DB 다운하기
-- https://www.mongodb.com/ #Mongo DB 홈페이지에서 회원가입호 설치하기
+- https://www.mongodb.com/ #Mongo DB 홈페이지에서 회원가입후 설치하기
 
 ### Cluster, Database 만들기
 - 옛날 버전의 경우 Cluster를 먼저 만들었는데 최신버전에선 Cluster는 기본으로 생성되고 Database를 만드는게 제일 첫 단계가 되는듯 함 (Cluster와 Database가 같은 개념으로 사용되는듯? 왜냐면 database 만든다고 들어갔는데 끝에보면 create cluster라고 되어 있음 ㅋㅋ)
@@ -117,6 +117,7 @@ Express JS:
 - git add .
 - gitignore 파일 만들어서 node_modules 폴더의 내용 제외하기
 - git rm --cached boiler-plate/node_modules -r 명령어를 사용하여 이미 staging된 node_modules의 내용들을 제거해줌
+<<<<<<< HEAD
 - git commit -m "first upload"
 
 ## 6강 SSH를 이용한 Github 연결
@@ -154,3 +155,34 @@ Express JS:
 - 끝으로 origin에 push 를 해주고 나의 경우 personal access token으로 로그인 까지 성공해주니 해당 repo에 local machine에서 commit 해준 내용들이 업로드 됬음!
 - 예이!
 
+=======
+-
+
+## 6강 SSH를 이용한 GitHub 연결
+### 1
+
+### 2
+
+
+## 7강 BodyParser & PostMan & 회원가입 기능 만들기
+### Client - Server 의 통신하는 법
+- Client: 크롬브라우저, 서버에게 요청을 보내는 당사자
+- Server: 클라이언트/크롬브라우저로 부터 받은 요청을 처리하고 필요한 자료를 클라이언트에게 보내줌
+
+### BodyParser, PostMan 설치하기
+- BodyParser: 웹/앱의 Body 데이터를 분석(parse)해서 req.body로 출력해주는 것 (Body-parser Dependency가 필요함)
+    - "npm imstall body-parser --save"
+- PostMan: 클라이언트가 서버에게 데이터 전송/받기 등을 할 수 있게 도와주는 것
+    - "https://www.postman.com/downloads/?utm_source=postman-home"
+
+### Register Route 만들기
+- Register Route 예시:
+```javascript
+ app.get('/', (req, res) => {res.send('Hello World!')})
+```
+
+### index.js 작업
+....... ....... .......
+
+### 
+>>>>>>> 5bcd0ac87c21a7b971816ed601167e2f233641c5
