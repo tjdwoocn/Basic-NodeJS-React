@@ -15,7 +15,7 @@ const config = require("./config/key");
 
 // Mongo DB 홈페이지에서 제공하는 접속 방법/코드, 접속은 잘 되는데 그 이후 작업이 진행이 안되어 다른방법 사용
 // const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://Canadanam:abc1234@boiler-plate.ew2iy.mongodb.net/boiler-plate?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://id:pwd@boiler-plate.ew2iy.mongodb.net/boiler-plate?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 // client.connect(err => {
@@ -24,14 +24,10 @@ const config = require("./config/key");
 //     // client.close();
 // });
 
-
 // Mongo DB Connection
 const mongoose = require('mongoose')
 mongoose.connect(config.mongoURI).then(() => console.log('MongoDB Connected..'))
     .catch(err => console.log(err))
-
-
-
 
 // 기본형태의 Register Route
 app.get('/', (req, res) => {

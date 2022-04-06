@@ -117,6 +117,45 @@ Express JS:
 - git add .
 - gitignore 파일 만들어서 node_modules 폴더의 내용 제외하기
 - git rm --cached boiler-plate/node_modules -r 명령어를 사용하여 이미 staging된 node_modules의 내용들을 제거해줌
+<<<<<<< HEAD
+- git commit -m "first upload"
+
+## 6강 SSH를 이용한 Github 연결
+### Git vs GitHub
+- Git?
+  - Tool, 소스코드를 관리하기 위한
+- GitHub?
+  - 클라우드 서비스, Git을 사용하는 서비스
+
+### SSH 설정하기
+- local machine과 Github이 안전하게 통신하기 위해
+- SSH (Secure Shell) 체크하기
+- 구글에서 git ssh 검색
+- windows 환경에 맞게 ssh key 만들기 ("https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent"
+)
+
+- "ssh-keygen -t ed25519 -C "your_email@example.com"
+- 처음 만드는 경우 계속 Enter누르면 됨
+- SSH agent 를 background에서 키기
+- 기존의 터미널에서 다음 과정을 진행하면 eval 이라는 명령어가 먹히지 않음 (window의 기본 터미널)
+- 난 git bash 를 활용했는데 git desktop에서도 될듯
+- git bash 에서 eval "$(ssh-agent -s)" 명령어를 입력, 하면 agent pid ~~~ 라고 뜸
+- ssh key를 만들때 ssh 프라이빗키와 ssh 퍼블릭키를 만들었는데 ssh agent에 등록할때는 프라이빗키인 id_rsa 를 등록해주면 됨
+- ssh-add ~/.ssh/id_ed25519 명령어 입력
+- identity added ~~ 하고 뜬다면 그렇다면! 성공한것임
+- 그 다음에는 ssh 퍼블릭키를 깃헙에 등록해주면 됨
+- "Adding a new SSH key to your GitHub account" 부분을 클릭하여 진행
+- "clip < ~/.ssh/id_ed25519.pub" 입력 (github cli 부분이 아닌 web browser 부분 참고함)
+- clipboard에 저장된 (위의 명령어를 입력하면 이미 나의 ssh key가 복사된 상태임, ctrl+v 를 해보면 나의 key를 확인가능)
+- 복사된 ssh-key를 입력해주면 됨
+- 그리고 add ssh key 버튼을 클릭하면 등록 완료!
+  
+### 기존에 만들어둔 git repository와 연결하기!
+- 만들어둔 git repo에 들어가보면 입력하라는 명령어들이 있는데 그것들을 git bash에 한줄한줄씩 입력해주면 됨
+- 끝으로 origin에 push 를 해주고 나의 경우 personal access token으로 로그인 까지 성공해주니 해당 repo에 local machine에서 commit 해준 내용들이 업로드 됬음!
+- 예이!
+
+=======
 -
 
 ## 6강. SSH를 이용한 GitHub 연결
