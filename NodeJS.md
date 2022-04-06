@@ -158,11 +158,6 @@ Express JS:
 =======
 -
 
-## 6강. SSH를 이용한 GitHub 연결
-### 1
-
-### 2
-
 
 ## 7강. BodyParser & PostMan & 회원가입 기능 만들기
 ### Client - Server 의 통신하는 법
