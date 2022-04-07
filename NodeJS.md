@@ -203,3 +203,26 @@ Express JS:
 - 그전에, 이전 강의에서 잠깐 언급했던 것처럼 우리가 개발을 local 환경에서도 할 수 있고(development) 배포 한 후에 추가 개발을 할수도 있는데(production) 이 두가지 경우에 대해 따로 생각을 해줘야 함
 - 예를들어 devlopment 단계에선 내가 따로 저장해둔 config 파일, 변수등을 가져올 수 있는데 배포 후에는(Heroku 같은 서비스를 이용해 배포할때는), 해당 서비스에서 제공해주는 방법으로 변수를 따로 만들어서 사용해야함.
 
+### config 폴더 생성 후 dev(로컬에서), prod(배포환경에서) 구분, key 저장
+
+
+## 10강. Bcrypt로 비밀번호 암호화
+- 앞의 강의에서 postman을 사용하여 회원의 정보를 받아왔는데, 사용자가 보낼때는 password가 그대로 오더라도 데이터 베이스에 저장될때는 암호화 처리가 이뤄진 다음에 저장되는게 보안적인 측면에서 더 좋음.
+- [사진]
+
+
+### Bcrypt 설치하기
+- Bcrypt 설치 
+- "npm install bcrypt --save"
+- homepage: "https://www.npmjs.com/package/bcrypt"
+
+### Bcrypt를 이용한 비밀번호 암호화 하기
+- 순서
+1. Register Route 부분으로 이동 (User.js 에서 userSchema를 index.js로 가져와야함)
+2. (bcrypt 사이트 보면서 진행) salt 생성 및 salt를 이용하여 비밀번호 암호화 진행
+~
+~
+~
+
+- 코드 작업 완료 후 postman 을 이용하여 새로 회원 정보를 보내니 이젠 password 부분이 암호화된 상태로 저장됨
+[사진]
