@@ -225,4 +225,31 @@ Express JS:
 ~
 
 - 코드 작업 완료 후 postman 을 이용하여 새로 회원 정보를 보내니 이젠 password 부분이 암호화된 상태로 저장됨
-[사진]
+- [사진]
+
+## 11강. 로그인 기능 만들기
+### login route 만들기
+
+1.요청된 이메일을 데이터 베이스에서 있는지 찾는다
+2. 요청된 이메일이 데이터 베이스에 있다면 비밀번호가 맞는 비밀번호 인지 확인
+3. 비밀번호까지 맞다면 token 생성
+
+## 12강. 토큰 생성 with jsonwebtoken
+### Json Web Token 다운받기
+- "npm install jsonwebtoken--save"
+
+### 토큰 저장
+- 쿠키, 로컬스토리지, 세션 등에 저장가능
+- [사진]
+- 어디에 저장하는게 가장 안전한가? 에 대한 논란은 많음. 사람마다 다름
+- 우선 여기선 쿠키에 저장함
+
+
+### cookie-parser 다운로드
+- "npm install cookie-parser --save"
+
+- login 성공
+- [사진]
+
+
+## 13강. Auth 기능 만들기
