@@ -38,6 +38,9 @@ app.get('/', (req, res) => {
 })
 
 
+app.get('api/hello', (req,res) =>{
+    res.send("반갑습니다~")
+})
 
 
 // Register Route

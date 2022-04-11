@@ -6,7 +6,7 @@ https://ji-gwang.tistory.com/2
 Boiler-plate - 보일러플레이트란?
 컴퓨터 프로그래밍에서 보일러플레이트 또는 보일러플레이트 코드라고 부르는 것은 최소한의 변경으로 여러곳에서 재사용되며, 반복적으로 비슷한 형태를 띄는 코드를 말한다.
 
-## 2강. Node JS 와 Express JS 다운로드
+## 2강. Node JS(Back-End) 와 Express JS 다운로드
 
 Node JS: 
 	- Node JS가 나옴으로 인해 항상 브라우저 속에서만 사용하던 js를 브라우저나 크롬, ie가 아닌 서버사이드에서도 사용할수 있게 됨
@@ -253,3 +253,118 @@ Express JS:
 
 
 ## 13강. Auth 기능 만들기
+
+
+
+
+
+
+
+
+
+## 15강. 리액트란(Front-End)?
+### What is React JS?
+- 프레임워크 No, 라이브러리 Yes, made by Facebook 2013
+- Components로 이루어짐, module과 비슷하게 재사용성이 좋음
+- Real DOM: 만약 10개의 리스트가 있고 그중 하나의 리스트가 업데이트 된다면, 전체 리스트를 다시 Reload 해야 업데이트가 됨, Super Expensive!
+- Virtual DOM: 만약 10개의 리스트가 있고 그중 하나의 리스트가 업데이트 된다면, 바뀐 리스트 하나만 DOM에서 바꿔줌! Super Cheap!
+  - 처음에 전체 리스트에 대한 스냅샷을 찍어두고, 중간중간 바뀌는 것들은 DOM에서 업데이트 해주는 식으로 
+
+
+## 16강. Create React App
+### App에 React 설치하기
+- 이전에는 React를 실행하기 위해 webpack이나 babel 같은 것을 설정하기 위해 시간이 많이 걸렷다.
+- 현재는 'create-react-app' command로 바로 시작가능
+  - ```linux 
+    npm install -g create-react-app
+    ```
+- Babel: 최신 자바스크립트 문법을 지원하지 않는 브라우저들을 위해 최신 자바스크립트 문법을 구형 브라우저에서도 돌수있게 변환시켜줌
+- Webpack: 최근엔 웹사이트 하나를 만들때 다양한 자바스크립트, 라이브러리, 프레임워크, html 등 많이 필요로 한데 이것을 webpack이 얘네들을 'bundle', 번들화 해준다
+
+- ```linux
+    npx create-react-app .
+  ```
+  - .을 뒤에 붙인 이유는 해당 폴더내에 react-app을 설치할것이다라는 뜻
+
+
+## 17강. NPM vs NPX
+### NPM? NPX?
+- NPM: Node Package Manager
+  - 온라인 리포, 레지스트리(라이브러리를 담고있는 역할), 저장소 역할
+  - 패키지들을 빌드해서 노드를 시작시키는 역할 (package.json)
+  - npm install ~ 이렇게 사용하면 local로 설치됨 (node_modules에 저장됨)
+  - npm install ~ -g 옵션을 사용하면 global한 위치에 설치됨 (%AppData%/npm on Windows,  /usr/local/bin on Linux)
+- NPX: NPX를 활용하면 npm 으로 본인의 환경에 다운받지 않더라도 npx가 npm registry에서 해당 모듈을 찾아와 다운로드 없이 실행시켜줌
+  - Disk Space를 낭비하지 않음
+  - 항상 최신 버전을 사용가능
+
+
+## 18강. React의 구조 설명
+### 실행 (package.json)
+- ```linux
+      npm run start
+      ```
+  이전과 똑같이 실행을 시키면 react page가 자동으로 켜짐
+  - 이것은 client 폴더의 package.json 파일에 start 명령이 입력되면 react-scripts 가 start 되게 되어있어서 그러함
+  - start를 다른 단어로 바꿔도 됨 (initiate 등)
+  - [사진]
+
+- WebPack의 경우 src 폴더 안의 파일들은 관리하지만 그 이외의 public 폴더등의 파일들은 관리하지 않음
+- [사진]
+- 이미지 등의 파일은 src 폴더에 넣어줘야 webpack이 모아서 관리해줌
+
+
+## 19강. CRA to Our Boilerplate
+### Boilerplate - 빅픽처
+- [그림]
+- 앞으로 만들게 될 boilerplate-페이지 의 구조도
+
+### hoc
+- Higher-order component, function.
+- function 인데 다른 component를 가질 수 있는 function 임
+- [사진]
+- admin component에는 관리자, admin 만 들어올 수 있음
+- logged in component 에는 로그인 된 사람만 들어올 수 있음
+- 굳이 자격이 아니더라도 다른 기능을 넣을수도 있음, 어떠한 조건이 충족되는 상황이면 들어갈 수 있는 그런...
+
+### utils
+- 여러 페이지에서 반복적으로 사용되는 기능들을 utils폴더에서 관리
+
+* src 폴더 및 기타 필요한 폴더들과 js파일을 미리 만들어 두었다
+- [사진]
+
+
+## 20강. React Router Dom
+### React Router Dom?
+- App.js 에서 라우팅 하는 부분 진행
+- React에선 페이지간의 이동을 할 때 React Router Dom 이란것을 사용함
+- url: "https://v5.reactrouter.com/web/example/basic"
+- [사진]
+
+### React Router Dom 설치하기
+```linux
+  npm install react-router-dom --save
+  ```
+-[사진]
+
+- 강의 영상 그대로 진행하니 Switch 사용하는 부분에서 에러가 발생함
+- 찾아보니 react-router-dom의 v6 부터 업데이트되어 Switch가 Routes로 바꼇다고 함
+- [사진]
+
+- [사진]
+- 최종 수정본
+
+
+## 21강. 데이터 Flow & Axios
+- [사진]
+### Axios
+- 이전까지는 클라이언트 부분이 준비되지 않았기 때문에 서버에 request를 보낼때 POSTMAN을 이용하여 보냈지만 이젠 클라이언트가 있으니 자체적으로 보낼수 있음
+- 이때 사용하는것이 AXIOS, jQuery를 사용할때의 AJAX 같은거 라고 보면 된다고 함
+- ```linux 
+  npm install axios --save
+  ```
+
+- 작업 진행하다보면 에러가 발생하는데...
+- [사진]
+- 서버와 클라이언트의 포트가 일치하지 않아서 그렇다고 함
+
