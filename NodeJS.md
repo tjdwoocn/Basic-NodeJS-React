@@ -368,3 +368,112 @@ Express JS:
 - [사진]
 - 서버와 클라이언트의 포트가 일치하지 않아서 그렇다고 함
 
+## 22강. CORS이슈, Proxy 설정
+- 저번 강의 마지막에 서버 포트와 클라이언트 포트의 차이에서 발생하는 문제때문에 클라이언트에서 request를 보내도 서버에서 response가 오지 않았음.
+- [사진], 검사 페이지에서 console tab을 선택하면 확인가능
+- 이부분에 대한 설명 및 해결을 진행하려 함
+
+### CORS
+- 서버는 포트가 3000, 클라이언트는 3001 처럼 둘의 포트가 다를때, 어떤 추가적인 조치 없이는 request를 보낼때 Cors 정책 문제가 발생함, 보안을 위해.
+- CORS: Cross-Origin Resource Sharing
+- 다른 웹사이트에서 서버등의 무단으로 침입하여 정보들을 수정/삭제 등을 하는것을 막기 위해
+-[사진]
+
+### 해결방안 (여러방법 있음)
+1. Proxy 사용 (우리가 사용할 방법)
+2. 개발자 도구 이용
+3. Front end만 고칠수 있는 경우 json p 라는 방식을 이용해 module request 를 get request로 바꿔서 보내기
+4. Back end 와 Front end 모두 조작이 가능한 상황일땐 서로 어떤 포트에 대한건 받겠다 안받겠다 따로 지정해주면 됨
+
+### Configuring the Proxy Manually
+- Proxy를 우리가 임의로 설정하는 것
+- [사진]
+- URL: "https://create-react-app.dev/docs/proxying-api-requests-in-development/"
+
+- [사진]
+- 일단 이전에 나오던 CORS 관련 에러는 사라짐, 그리고 Hello world ~~~ 라고 서버의 index.js 부분에 작성한 api/hello의 response가 결과값으로 받아와져 있음.
+
+* 번외로 작업중에 서버를 시작하려고 npm run start를 하는데 자꾸 "Error: Cannot find module 'C:\Users\Jay\Desktop\Basic-NodeJS-React\boiler-plate\index.js'" 이 에러가 발생하여 왜그러지 하고 한참 찾아봤는데...
+* 우선 기존에 있던 index.js와 기타 파일들을 server 폴더안에 넣어줌으로써 package.json 은 boiler-plate 폴더에 있고 index.js는 server 폴더에 있게 되었다.
+* 이때 package.json 파일을 보면 start 부분에 node index.js 라고 되어 있다보니 찾지를 못하였던것! node server/index.js 라고 수정해주니 정상작동함, backend 부분도 동일!
+* 찾아보니 유사한 에러를 겪는 사람들이 많은데 경로 맞춰주는것이 매우 중요함! (이름이 비슷한 파일들이 많은데 이게 경로가 안맞으면 잘 꼬이는듯 함)
+
+
+## 23강. Proxy Server?
+### What is Proxy Server?
+- 클라이언트와 메인서버 사이에 위치하여 유저가 메인서버에 접속할때 프록시 서버에서 유저의 ip 주소를 임의로 바꿔 메인서버에선 모르게 할 수도 있고, 보내는 데이터도 임의로 바꿀수 잇음
+- Proxy Server에는 방화벽 기능, 웹 필터 기능, 캐쉬 데이터/공유 데이터 제공 기능 등이 있다
+
+### Proxy Server 사용 이유!
+1. 회사에서, 직원들이 어떠한 사이트들에 접속하지 않았으면 좋겠다 할 때나, 집안에서 아이들이 유해 사이트 등에 접속하는 것을 막기 위해
+2. 메인서버의 자료들을 프록시 서버에 캐쉬상태로 저장해두면 클라이언트가 요청하는 자료들을 메인서버까지 들리지 않고 프록시 서버에서 보내줄수가 있음 (빠름)
+3. IP를 숨김으로 인한 보안기능 등
+4. 이용 제한된 사이트 접근 가능 (VPN처럼 IP 우회, 다만 VPN은 데이터 전송에 있어 암호화를 하여 보안에 좀 더 신경쓴다고 함)
+
+
+## 24강. 여러 서버 동시에 작동하기 with Concurrently
+- 이전 강의에서 프론트와 백앤드 서버를 따로 실행/작동 시켰었는데 이것을 한번에 하도록 함
+
+### Concurrently 설치
+- "npm install concurrently --save"
+
+### Concurrnetly 사용법
+- 현재 백앤드 서버 작동: npm run backend, 프론트 서버 작동: npm run start, 로 하고 있는데 두개의 디렉토리가 조금 차이가 남
+- 우선 root(boiler-pate)에 있는 package.json 파일에서 새로운 스크립트를 작성함
+  - "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
+  - [사진]
+- 그리고 "npm run dev" 를 터미널에서 입력하면 두개가 순차적으로 실행이 됨
+
+
+## 25강. Antd CSS Framework
+### CSS Framework
+- CSS Framework를 쓰는 이유: 기능을 만드는데 더욱 집중하기 위하여
+  - 직접 하나하나 관리하게되면 기능만드는 것 이외에 너무나 많은 시간을 CSS에 소비하게 됨
+  - 최근에는 CSS Framework가 워낙 잘되어 있어 실무에서도 많이 활용되고 있음
+
+### CSS Framework for React JS 종류
+1. Material UI (처음에 배울때 좀 어렵다라는 느낌?)
+2. React Bootstrap
+3. Semantic UI
+4. Ant Design (우리가 사용할 것, 중국에서 개발, 사이즈가 큼, 스타일이 깔끔함?, Enterprize 환경에도 괜찮음, 쓰기가 편함?)
+5. Materialize 
+
+### Ant Design
+- url: "https://ant.design/"
+- 설치: "npm install antd"
+- React, Font에 적용되는 모듈이기 때문에 Client 폴더로 이동후 설치
+- 설치 완료되면 client 폴더의 index.js 파일에 "import 'antd/dist/antd.css';" 코드 추가
+
+## 26강. Redux 기초
+### What is Redux?
+- Redux is a predictable state container for JavaScript apps.
+- 상태 관리 라이브러리
+
+### State container? What is State?
+- React에는 Props와 State가 있는데... (사진 참고)
+- [사진]
+- Props:
+  - Properties의 줄임말
+  - 부모 컴포넌트와 자식 컴포넌트가 있을때, 컴포넌트간에 무언가를 주고 받을때 사용 (how components talk to each other)
+  - 부모 컴포넌트에서 자식 컴포넌트로 만 보낼 수 있음 (props flow downwards)
+  - 부모 컴포넌트에서 자식 컴포넌트로 props를 보냇을때 props는 바뀔수 없음 (immutable)(부모 컴포넌트에서 새로운 값을 다시 내려줘야 바뀔수 있음)
+- State:
+  - 부모/자식 컴포넌트 간의 data 전송이 아닌, 해당 컴포넌트 안에서 데이터 전송을 하려면 state 이용
+    - 예: 검색 창에 글을 입력할 때 글이 변하는것은 state를 바꿈?
+  - State is mutable
+  - State 가 변하면 re-render 됨
+
+* So, Redux 는 State을 관리해주는 도구
+- [사진]
+
+### Redux의 데이터 Flow
+- [사진]
+- Action: 객체, 무엇이 일어낫는지 설명하는 객체 (예: 어떤 유저가 어떤 게시물을 liked 했다 등)
+- Reducer: Action을 함으로 인해, 원래 Application의 state가 어떻게 바뀌었는지 설명해놓는 곳
+  - 이전 State와 action object를 받은 후에 next state를 return 한다
+- Store: Application의 state를 감싸주는 역할
+  - Store 안에는 여러가지 methods 가 있고, 그 methods를 활용하여 state를 관리 할 수 있다.
+
+
+## 27강. Redux Up!
+### 

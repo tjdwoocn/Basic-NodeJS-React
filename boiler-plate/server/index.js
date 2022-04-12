@@ -1,19 +1,21 @@
 const express = require('express')
 const app = express()
-const port = 3000
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const { User } = require("./models/User");
+const port = 5000
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const config = require("./config/key")
+const {auth} = require("./middleware/auth");
+const {User} = require("./models/User")
 
-// url과 json 형태로 데이터가 들어오는것에 대해 parse 하기 위한 body-parser
 // application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
+
 // application/json
 app.use(bodyParser.json());
+
 app.use(cookieParser());
 
 // mongodb 접속 정보 가져오기
-const config = require("./config/key");
 
 // Mongo DB 홈페이지에서 제공하는 접속 방법/코드, 접속은 잘 되는데 그 이후 작업이 진행이 안되어 다른방법 사용
 // const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -36,18 +38,16 @@ mongoose.connect(config.mongoURI).then(() => console.log('MongoDB Connected..'))
 app.get('/', (req, res) => {
     res.send('Hello World! Today is Wednesday!')
 })
-
-
-app.get('api/hello', (req,res) =>{
-    res.send("반갑습니다~")
+app.get('/api/hello', (req, res) => {
+    res.send('Hello World! ~~~~')
 })
 
-
 // Register Route
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     // 회원 가입 할 때 필요한 정보들을 clinet에서 가져오면 
     // 그것들을 데이터 베이스에 넣어주기
     const user = new User(req.body)
+    // bcrpy로 암호화
     user.save((err, userInfo) => {
             if (err) return res.json({ success: false, err, user })
             return res.status(200).json({
@@ -58,7 +58,7 @@ app.post('/register', (req, res) => {
 
 
 // login 기능
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 요청된 email을 데이터베이스에서 찾는다.
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
@@ -88,7 +88,30 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.get('/api/users/auth', auth, (req, res) => {
+    res.status(200).json({
+        _id: req.user._id,
+        isAdmin: req.user.role === 0 ? false : true,
+        isAuth: true,
+        email: req.user.email,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        role: req.user.role,
+        image: req.user.image
+    })
+})
 
+app.get('/api/users/logout', auth, (req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {token: ""},
+        (err, user) => {
+            if (err) return res.json({success: false, err});
+            return res.status(200).send({
+                success: true
+            })
+        })
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)

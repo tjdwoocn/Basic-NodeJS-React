@@ -41,11 +41,10 @@ userSchema.pre('save', function(next) {
 
     // 다른 정보가 아닌 '비밀번호만' 바꿀때 암호화 작업이 이루어 지도록 조건문 추가
     if (user.isModified('password')) {
-        // 비밀번호를 암호화 시킨다
-        bcrypt.genSalt(saltRounds, function(err, salt) {
+        // 비밀번호 암호화
+        bcrypt.genSalt(saltRounds, function (err, salt) {
             if (err) return next(err)
-
-            bcrypt.hash(user.password, salt, function(err, hash) {
+            bcrypt.hash(user.password, salt, function (err, hash) {
                 if (err) return next(err)
                 user.password = hash
                 next()
@@ -55,7 +54,6 @@ userSchema.pre('save', function(next) {
         next()
     }
 })
-
 userSchema.methods.comparePassword = function(plainPassword, cb) {
 
     // plainPassword: 1234567, 암호화된 비밀번호: $2b$10$/96EE3nWXF2IlAFuHORW7OJOtuR7Y8CXnkbmf0Z5z3tg55WP~~~~~
@@ -81,6 +79,19 @@ userSchema.methods.generateToken = function(cb) {
     })
 }
 
+userSchema.statics.findByToken = function (token, cb) {
+    var user = this;
+
+    // 토큰을 복호화한다.
+    jwt.verify(token, 'secretToken', function (err, decoded) {
+        // User 아이디를 이용해서 User를 찾은 후 클라이언트에서 가져온 Token과 DB에 저장된 Token 과 일치하는지 확인
+        user.findOne({"_id": decoded, "token": token}, function (err, user) {
+            if (err) return cb(err);
+            cb(null, user)
+        })
+    });
+}
+
 const User = mongoose.model('User', userSchema)
 
-module.exports = { User }
+module.exports = {User}
