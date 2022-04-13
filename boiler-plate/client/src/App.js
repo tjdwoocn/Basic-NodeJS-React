@@ -2,17 +2,22 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 import LandingPage from './components/views/LandingPage/LandingPage'
 import LoginPage from './components/views/LoginPage/LoginPage'
 import RegisterPage from './components/views/RegisterPage/RegisterPage'
-
+import Auth from './hoc/auth'
+import { auth } from "./_actions/user_action";
 
 
 function App() {
   return (
+
+    // react-router-dom
+    // v5 Switch component
+    // v6 Routes element
+
     <Router>
       <div>
         <Routes>

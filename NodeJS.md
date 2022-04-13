@@ -493,7 +493,7 @@ Express JS:
 - redux-thunk는 function을 redux-promise는 promise를 받을수 있도록 도와줌(teaches dispatch how to accept function and promise)
 
 ### Redux 적용하기
-- client/src/index.js 편집
+- "client/src/index.js" 편집
 - 'redux dev tools' extension 설치하기 및 client/src/index.js 에 코드 추가
   - "https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en"
 
@@ -523,12 +523,50 @@ Express JS:
   - [사진] 리액트의 생성/실행 과정, lifecycles
 
 
-## 29강. 로그인 페이지 part1
+## 29-30강. 로그인 페이지
 - 로그인 페이지 전체의 기능을 한번에 다 하기엔 너무 복잡/양이 많아 전체적인 틀만 우선적으로 만들 예정
 
 ### 로그인 페이지 구성
 - [사진]
 - 사진에서 보이는 구성요소들의 틀만 잡아보려 함
-- client/src/components/views/LoginPage/LoginPage.js 편집
+- "client/src/components/views/LoginPage/LoginPage.js" 편집
+
+- 로그인 페이지 작성 중 'props.history.push' 이부분에서 push 에러가 발생하는데 이것은 React Router 버전 문제때문에 발생한다는데, 
+- v6 이상을 사용한다면 사진을 참고하여 수정하면 정상작동 됨
+
+<img src="https://raw.githubusercontent.com/tjdwoocn/Basic-NodeJS-React/main/imgs/20220413_134057.png" alt="alt text" title="image Title" align='center' />
 
 
+## 31강. 회원가입 페이지
+- 로그인 페이지가 완성되었고, 로그인 페이지를 만들때 사용했던 대부분의 코드를 재사용 및 추가작업하여 회원가입 페이지를 금방 만들수 있었다
+
+<img src="https://raw.githubusercontent.com/tjdwoocn/Basic-NodeJS-React/main/imgs/20220413_150257.png" alt="alt text" title="image Title" align='center' />
+
+
+## 32강. 로그아웃 기능
+- 로그인 한 이후 로그아웃 할 수 있도록 기능을 만들려고 함
+- 로그아웃의 경우 따로 페이지를 만드는것이 아닌, 랜딩페이지에 버튼 하나를 추가하여 로그아웃 기능 구현
+
+
+## 33-34강. 인증 체크
+### Authentication
+- 이전까지 로그인, 회원가입, 로그아웃 기능들을 만들었는데
+- 보통 홈페이지들을 보면, 
+  1. 아무나 진입 가능한 페이지 (ex. Landing Page, About Page)
+  2. 로그인한 회원만 진입 가능한 페이지 (ex. Detail Page, Coupon Page)
+  3. 로그인 한 회원은 진입 못하는 페이지 (ex. Register Page, Login Page)
+  4. 관리자만 진입 가능한 페이지 (ex. Admin Page)
+- 등으로 나뉠 수 있음
+
+- 페이지 뿐만 아니라 인증이 필요한 부분은 더 있다
+  1. 댓글 작성
+  2. 파일 전송
+  3. 파일 업로드 등등등
+
+### HOC, Higher-order-component (16강 부분 참고)
+<img src="https://raw.githubusercontent.com/tjdwoocn/Basic-NodeJS-React/main/imgs/20220413_152738.png" alt="alt text" title="image Title" align='center' />
+- log in 과 관련된 컴포넌트를 Auth에 추가하여 EnhancedComponent를 새로이 만들어 냄
+
+### Auth Component 작성하기
+- "client/src/hoc/auth.js" 편집
+- "client/src/app.js" 편집
