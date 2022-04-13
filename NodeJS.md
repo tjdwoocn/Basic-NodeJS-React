@@ -476,4 +476,59 @@ Express JS:
 
 
 ## 27강. Redux Up!
-### 
+- Redux 설치 후 초반에 설정해줘야 할 것들에 대해 알아보려함
+
+### 4가지의 Dependencies
+1. redux
+2. react-redux
+3. redux-promise (middleware)
+4. redux-thunk (middleware)
+
+- "npm install redux react-redux redux-promise redux-thunk --save"
+
+* redux의 middleware인 redux-promise와 redux-thunk를 다운받아야 하는 이유
+- redux를 잘 쓸수 있게 도와주는 역할
+- 기존의 redux store의 경우 객체 형식만 받을수 있는데(only accept dispatching plain object)
+- redux store에는 'function' 과 'promise' 또한 전달된다
+- redux-thunk는 function을 redux-promise는 promise를 받을수 있도록 도와줌(teaches dispatch how to accept function and promise)
+
+### Redux 적용하기
+- client/src/index.js 편집
+- 'redux dev tools' extension 설치하기 및 client/src/index.js 에 코드 추가
+  - "https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en"
+
+### Combine Reducer
+- Store에는 여러가지 Reducer 들이 존재함 (user reducer, number reducer 등등), 각 state 별로 reducer가 있다고 보면 됨
+- 각 state가(user state, number state 등) 어찌저찌 변하여 최종적으로 어떤 값을 가지고 있고 그 변한 값을 리턴해주는게 reducer임
+- Combine Reducer가 이러한 각 reducer의 내용을 토탈하여 root reducer로 전달하는 역할을 함
+
+
+## 28강. React (추가)
+- 회원 가입 기능 작업하기 전에 React에 대하여 좀 더 알아보기로 함
+
+### React의 Component
+- Class Component:
+  - 더 많은 기능 사용가능
+  - 대신 조금 더 길고 복잡한 코드
+  - 성능부분에서 좀 더 느림
+- Functional Component: 
+  - 제공하는 기능이 적음, 한정적
+  - 대신 코드가 짧고 간단함
+  - 성능도 좀 더 빠름
+
+- Functional Compoent에서 사용할 수 없는 기능들 (Class Component에선 사용 가능한데)
+  - ... 거의 대부분의 영역에서 Functional Component가 사용불가 였는데...
+  - React 16.8 Hooks가 나오면서! 이제 Functional Component들도 사용 가능하게 바뀌었다고 함!
+  - 그래서 왠만한 기능은 Functional Component 형태로 개발 가능
+  - [사진] 리액트의 생성/실행 과정, lifecycles
+
+
+## 29강. 로그인 페이지 part1
+- 로그인 페이지 전체의 기능을 한번에 다 하기엔 너무 복잡/양이 많아 전체적인 틀만 우선적으로 만들 예정
+
+### 로그인 페이지 구성
+- [사진]
+- 사진에서 보이는 구성요소들의 틀만 잡아보려 함
+- client/src/components/views/LoginPage/LoginPage.js 편집
+
+
