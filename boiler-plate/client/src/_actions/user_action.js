@@ -31,8 +31,8 @@ export function registerUser(dataToSubmit){
 
 
 // Auth
-export function auth(dataToSubmit){
-    const request = axios.post('/api/users/auth', dataToSubmit)
+export function auth(){
+    const request = axios.get('/api/users/auth')
     .then(response => response.data)
 
     return {
@@ -40,4 +40,4 @@ export function auth(dataToSubmit){
         payload: request
     }
 
-}
+}   
